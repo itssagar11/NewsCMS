@@ -1,0 +1,139 @@
+
+<!-- Copyright (c) 2021 Sagar Bisht  -->
+
+<!-- --- ----- ----- --- -- - - - -- - -- - -->
+<!doctype>
+<html>
+  <head>
+     <meta data-rh="true" name="theme-color" content="#000000" />
+     <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@362&display=swap"
+      rel="stylesheet"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width,minimum-scale=1,initial-scale=1"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style/login.css">
+    <title> NewsRoom-SignIn</title>
+    <style>
+      body{
+        margin:10px;
+        display:flex;
+         font-family: "Rubik", sans-serif;
+        justify-content:space-around;
+        align-items:center;
+        flex-wrap:wrap;
+        
+      }
+     
+    
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+         <center>
+      <h1>
+        Sign in with email
+      </h1>
+  <p>
+        Enter the email address  and password associated with your account,.
+      </p>
+            <!-- Login -->
+            <input type="text" class="textbox login_box" id="txt_email" name="txt_email" placeholder="Email" /><br>
+        
+            <input type="Password" class="textbox login_box" id="txt_pwd"  name="txt_pwd" placeholder="Password"/><br>
+        
+            <input type="button" value="LOG IN" name="but_submit" id="but_submit"  class="login_box"/>
+
+            <!-- OTP --->
+            <input type="tel" class="textbox otp_box" id="txt_otp"  name="txt_otp" placeholder="Enter OTP" inputmode="numeric" /><br>
+        
+      
+            <input type="button" value="VERIFY OTP" name="but_submit" id="btn_otp"  class="otp_box"/>
+            <small id="message"></small>
+        
+</center> 
+Demo account- <br>Email- demo@admin.com <br> Password- demo@123 <br>
+Two-Factor Authentication is disable for demo account. if asked for otp enter '8427' to bypass it. 
+    </div>
+    <div class="branding">
+      <center>
+      <hr>
+      <h3 class="quotes">
+       Content is anything that adds value to reader's life!
+      </h3>
+      <small ><a href="">@SagarBisht</a> Software Rights Reserved.</small>
+        </center>
+    </div>
+  </body>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      var username='';
+      var password='';
+    $("#but_submit").click(function(){
+      $("#message").html("<span style='color:#15c18b;'>Please wait..</span>");
+        username = $("#txt_email").val().trim();
+        password = $("#txt_pwd").val().trim();
+        if(username=='' || password==''){
+          $("#message").html("<span style='color:#red;'>Fill credentials </span>");
+        }
+
+        if( username != "" && password != "" ){
+            $.ajax({
+                url:'login.php',
+                type:'post',
+                data:{email:username,password:password},
+                success:function(response){
+                    var msg = "";
+                    if(response==4){
+                       $(".otp_box").show();
+                       $(".login_box").hide();
+                       $("h1").text("Verify its you");
+                       $(".quotes").hide();
+                       $("p").text("OTP has been send to your registered email address. ");
+                    }
+                    else if(response == 1){
+                        window.location = "deshboard.php";
+                    }else if(response==2){
+                       msg = "Login attemped limit reached";
+                    }
+                    else{
+                        msg = "<span style='color:red;'>Invalid Email or Password .</span>";
+                    }
+                    $("#message").html(msg);
+                }
+            });
+        }
+    });
+    $("#btn_otp").click(function(){
+      $("#message").html("<span style='color:#15c18b;'>Please wait..</span>");
+      var otp=$("#txt_otp").val().trim();
+      if(otp==''){
+        $("#message").html("<span>Enter OTP </span>");
+      }
+      $.ajax({
+        url:'otp_verify.php',
+        type:'post',
+        data:{otp:otp,email:username,password:password},
+        success:function(response2){
+          if(response2==1){
+            $("#message").hide();
+              window.location = "deshboard.php";
+          }
+          else{
+             msg = "<span style='color:red;'>Incorrect OTP .</span>";
+          }
+          $("#message").html(msg);
+
+
+        }
+
+      });
+
+    });
+
+});
+  </script>
+</html>

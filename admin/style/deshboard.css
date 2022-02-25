@@ -1,0 +1,130 @@
+<style>
+   
+    
+    /*--- Deshboard---*/
+
+    .material-icons {
+      font-family: "Material Icons";
+      color:#ffffff;
+      font-weight: normal;
+
+      display: inline-block;
+
+      /* Support for all WebKit browsers. */
+      -webkit-font-smoothing: antialiased;
+      /* Support for Safari and Chrome. */
+      text-rendering: optimizeLegibility;
+
+      /* Support for Firefox. */
+      -moz-osx-font-smoothing: grayscale;
+
+      /* Support for IE. */
+      font-feature-settings: "liga";
+    }
+    .icon, .home-icon {
+      padding: 5px;
+      border-radius: 50%;
+      font-size: 40px;
+    }
+    .title-container{
+      justify-items:space-between;
+            display:flex;
+        flex-wrap:nowrap;
+      background-color:#F7F9FA;
+      border-botto:1px solid #000000;
+      padding:40px 10px;
+    }
+    .title{
+         margin:auto;
+      display:flex;
+
+      }
+      .create-box{
+        margin:auto;
+        float:none;
+      }
+    .detail-container{
+      background-color:#ffffff;
+     padding:5px;
+      width:100%;
+      margin:auto;
+       margin-top:10px;
+    }
+    .detail{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-around;
+    }
+    .detail-item{
+      width:25%;
+      display:flex;
+      padding:5px 10px;
+      justify-content:space-between;
+      flex-wrap:nowrap;
+      margin:auto;
+      border-right:1px solid #f7f7f7;
+    }
+
+    .graph{
+      background-color:#ffffff;
+      padding:5px;
+    }
+
+    .active-user
+    {
+      width:100%;
+      margin:8px;
+      padding:5px;
+    }
+    .realtime{
+      width:260;
+      background-color:#ffffff;
+      border-radius: 5px;
+      padding:10px 20px;
+    }
+    .devices{
+      width:500px;
+      height:380px;
+    }
+
+    @media only screen and (max-width: 993px){
+      .active-user
+      {
+        
+        width:100%;
+        margin-top:5px;
+      }
+      .graph{
+        margin:auto;
+        width:100%;
+        overflow:hidden;
+      }
+
+    }
+
+    @media only screen and (max-width: 769px) {
+     
+      .detail-item{
+        width:100%;
+        margin-top:15px;
+        border-bottom:2px solid #f7f7f7;
+        justify-content:space-around;
+      }
+      .devices{
+      width:100%;
+      height:auto;
+    }
+    .realtime{
+      width:100%;
+    }{
+
+    }
+    .device_hide{
+      display: none;
+    }
+      
+      
+      /*---- deshboard --*/
+      
+    }
+  </style>
